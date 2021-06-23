@@ -47,23 +47,6 @@
             background-repeat: no-repeat;
         }
         
-        .ps-theme-base .ps-bank-choose-assured {
-            display: none;
-        }
-
-
-        .ps-theme-base md-input-container label:not(._md-container-ignore), .ps-theme-base md-input-container label:not(.md-container-ignore) {
-            display: none;
-        }
-
-        .ps-theme-checkout-standard .ps-header-view .ps-header-amount-text {
-            display: none;
-        }
-
-
-        ps-theme-checkout-standard .ps-header-view .ps-details-intro {
-            display: none;
-        }
     </style>
 </head>
 
@@ -103,6 +86,7 @@
             + 'ps-viewLogo="hide" '
             + 'ps-paymentMeta=' + getParameterByName('res') + ' '
             + 'ps-publishableKey="8jlkxlts0nisoonsdl5ymjtr" '
+            + 'ps-externalCss = "https://raw.githubusercontent.com/msgharsha/newpayment/main/style.css" '
             + '></sc' + 'ript>'
         );
     </script>
