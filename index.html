@@ -96,6 +96,18 @@
     </script>
 
     <script type="text/javascript">
+        
+        $(function () {
+            $('#chkterms').click(function () {
+                if ($('#chkterms').is(':checked')) {
+                    $(".loginbtn").prop('disabled', false);
+                }
+                else {
+                    $(".loginbtn").prop('disabled', true);
+                    location.reload();
+                }
+            })
+        })
 
         PayStandCheckout.once("event", "checkoutLoaded", function () {
             //PayStandCheckout.reset(_.merge({}, window.psConfig.init, init), 400, 700);
