@@ -122,7 +122,7 @@
         psCheckout.onError(function (data) {
             console.log(data)
             PayStandCheckout.hideCheckout();
-            window.location.href = "https://msgharsha.github.io/paymentFailure?res=" + JSON.stringify(data.response);
+            window.location.href = "http://localhost:8080/paymentFailure?res=" + JSON.stringify(data.response);
 
         });
         psCheckout.checkoutAction = function (data) {
