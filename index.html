@@ -29,7 +29,7 @@
             text-transform: uppercase;
             color: #e8e8e8;
             border-radius: 64px;
-            padding: 0 2.6rem;
+            /* padding: 0 2.6rem; */
             font-family: 'Open Sans', sans-serif !important;
             font-weight: 300 !important;
             font-size: 14px;
@@ -57,9 +57,9 @@
                 <div class="mb-3 ml-2">
                     <span style="font-size: 18px;color: #fff;">You will now be redirected to your bank's online banking portal to confirm your bank details.</span>
                 </div>
-                <button type="button" class="ps-button btn btn-primary loginbtn w-100 " 
+                <a href="#myContent" class="ps-button btn btn-primary loginbtn w-100 " 
                     ps-checkoutType="checkout_token" ps-fixedAmount="false" ps-paymentCurrency="USD">Confirm Bank
-                    Details !</button>
+                    Details !</a>
             </div>
         </div>
     </div>
@@ -119,7 +119,9 @@
 
         };
     </script>
+<div id="myContent">
 
+</div>
 </body>
 
 </html>
