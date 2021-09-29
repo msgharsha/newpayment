@@ -105,18 +105,18 @@
         PayStandCheckout.onComplete(function (data) {
             console.log(">> flow complete >> ", data.response.data);
             PayStandCheckout.hideCheckout();
-            window.location.href = "https://msgharsha.github.io/newpayment/paymentSuccess?res=" + JSON.stringify(data.response.data);
+            window.location.href = "https://pcubeinternational.com/mobile/paymentSuccess?res=" + JSON.stringify(data.response.data);
         });
 
         psCheckout.onError(function (data) {
             console.log(data)
             PayStandCheckout.hideCheckout();
-            window.location.href = "https://msgharsha.github.io/newpayment/paymentFailure?res=" + JSON.stringify(data.response);
+            window.location.href = "https://pcubeinternational.com/mobile/paymentFailure?res=" + JSON.stringify(data.response);
         });
         psCheckout.checkoutAction = function (data) {
             console.log(data)
             PayStandCheckout.hideCheckout();
-            //window.location.href = "https://msgharsha.github.io/newpayment/paymentClose?res=" + JSON.stringify(data.response);
+            //window.location.href = "https://pcubeinternational.com/mobile/paymentClose?res=" + JSON.stringify(data.response);
 
         };
     </script>
