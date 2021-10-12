@@ -2,11 +2,6 @@
     display: none;
 }
 
-
-.ps-theme-base md-input-container label:not(._md-container-ignore), .ps-theme-base md-input-container label:not(.md-container-ignore) {
-    display: none;
-}
-
 .ps-theme-checkout-standard .ps-header-view .ps-header-amount-text {
     display: none;
 }
