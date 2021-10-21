@@ -65,62 +65,63 @@
     <!-- Drop these script to add checkout widget -->
     <script type="text/javascript">
 
-        function getParameterByName(name, url) {
-            if (!url) url = window.location.href;
-            console.log(url)
-            url = url.toLowerCase(); // This is just to avoid case sensitiveness  
-            name = name.replace(/[\[\]]/g, "\\$&").toLowerCase();// This is just to avoid case sensitiveness for query parameter name
-            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, " "));
-        }
+//         function getParameterByName(name, url) {
+//             if (!url) url = window.location.href;
+//             console.log(url)
+//             url = url.toLowerCase(); // This is just to avoid case sensitiveness  
+//             name = name.replace(/[\[\]]/g, "\\$&").toLowerCase();// This is just to avoid case sensitiveness for query parameter name
+//             var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+//                 results = regex.exec(url);
+//             if (!results) return null;
+//             if (!results[2]) return '';
+//             return decodeURIComponent(results[2].replace(/\+/g, " "));
+//         }
 
-        document.write(
-            '<scr' + 'ipt '
-            + 'type="text/javascript" '
-            + 'id="ps_checkout" '
-            + 'src="https://checkout.paystand.co/v4/js/paystand.checkout.js" '
-            + 'ps-env="sandbox" '
-            + 'ps-mode="embed" '
-            + 'ps-viewFunds ="bank" '
-            + 'ps-payerEmail=' + getParameterByName('res') + ' '
-            + 'ps-viewLogo="hide" '
-            + 'ps-paymentMeta=' + getParameterByName('res') + ' '
-            + 'ps-publishableKey="8jlkxlts0nisoonsdl5ymjtr" '
-            + 'ps-externalCss = "https://test.pcubeinternational.com/mobile/style.css" '
-            + '></sc' + 'ript>'
-        );
+//         document.write(
+//             '<scr' + 'ipt '
+//             + 'type="text/javascript" '
+//             + 'id="ps_checkout" '
+//             + 'src="https://checkout.paystand.co/v4/js/paystand.checkout.js" '
+//             + 'ps-env="sandbox" '
+//             + 'ps-mode="embed" '
+//             + 'ps-viewFunds ="bank" '
+//             + 'ps-payerEmail=' + getParameterByName('res') + ' '
+//             + 'ps-viewLogo="hide" '
+//             + 'ps-paymentMeta=' + getParameterByName('res') + ' '
+//             + 'ps-publishableKey="8jlkxlts0nisoonsdl5ymjtr" '
+//             + 'ps-externalCss = "https://test.pcubeinternational.com/mobile/style.css" '
+//             + '></sc' + 'ript>'
+//         );
     </script>
 
     <script type="text/javascript">
         $("#btnSubmit").click(function(){
+            alert('test123')
             window.open('http://www.google.com',"_blank",)
         }); 
        
 
-        PayStandCheckout.once("event", "checkoutLoaded", function () {
-            //PayStandCheckout.reset(_.merge({}, window.psConfig.init, init), 400, 700);
-        });
+//         PayStandCheckout.once("event", "checkoutLoaded", function () {
+//             //PayStandCheckout.reset(_.merge({}, window.psConfig.init, init), 400, 700);
+//         });
 
-        PayStandCheckout.onComplete(function (data) {
-            console.log(">> flow complete >> ", data.response.data);
-            PayStandCheckout.hideCheckout();
-            window.location.href = "https://msgharsha.github.io/newpayment/paymentSuccess?res=" + JSON.stringify(data.response.data);
-        });
+//         PayStandCheckout.onComplete(function (data) {
+//             console.log(">> flow complete >> ", data.response.data);
+//             PayStandCheckout.hideCheckout();
+//             window.location.href = "https://msgharsha.github.io/newpayment/paymentSuccess?res=" + JSON.stringify(data.response.data);
+//         });
 
-        psCheckout.onError(function (data) {
-            console.log(data)
-            PayStandCheckout.hideCheckout();
-            window.location.href = "https://msgharsha.github.io/newpayment/paymentFailure?res=" + JSON.stringify(data.response);
-        });
-        psCheckout.checkoutAction = function (data) {
-            console.log(data)
-            PayStandCheckout.hideCheckout();
-            //window.location.href = "https://msgharsha.github.io/newpayment/paymentClose?res=" + JSON.stringify(data.response);
+//         psCheckout.onError(function (data) {
+//             console.log(data)
+//             PayStandCheckout.hideCheckout();
+//             window.location.href = "https://msgharsha.github.io/newpayment/paymentFailure?res=" + JSON.stringify(data.response);
+//         });
+//         psCheckout.checkoutAction = function (data) {
+//             console.log(data)
+//             PayStandCheckout.hideCheckout();
+//             //window.location.href = "https://msgharsha.github.io/newpayment/paymentClose?res=" + JSON.stringify(data.response);
 
-        };
+//         };
     </script>
 <div id="myContent">
 
