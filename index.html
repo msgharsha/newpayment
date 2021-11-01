@@ -79,18 +79,34 @@
         }
 
         document.write(
+//             '<scr' + 'ipt '
+//             + 'type="text/javascript" '
+//             + 'id="ps_checkout" '
+//             + 'src="https://checkout.paystand.co/v4/js/paystand.checkout.js" '
+//             + 'ps-mode="embed" '
+//             + 'ps-viewFunds ="bank" '
+//             + 'ps-payerEmail=' + getParameterByName('res') + ' '
+//             + 'ps-viewLogo="hide" '
+//             + 'ps-paymentMeta=' + getParameterByName('res') + ' '
+//             + 'ps-publishableKey="rn50et8phyi1kbw4dip1kwl8" '
+//             + 'ps-externalCss = "https://pcubeinternational.com/mobile/style.css" '
+//             + '></sc' + 'ript>'
+            
+            
             '<scr' + 'ipt '
             + 'type="text/javascript" '
-            + 'id="ps_checkout" '
+            + 'id="paystand_checkout" '
             + 'src="https://checkout.paystand.co/v4/js/paystand.checkout.js" '
             + 'ps-mode="embed" '
-            + 'ps-viewFunds ="bank" '
-            + 'ps-payerEmail=' + getParameterByName('res') + ' '
-            + 'ps-viewLogo="hide" '
-            + 'ps-paymentMeta=' + getParameterByName('res') + ' '
-            + 'ps-publishableKey="rn50et8phyi1kbw4dip1kwl8" '
-            + 'ps-externalCss = "https://pcubeinternational.com/mobile/style.css" '
+            + 'ps-height="700px" '
+            + 'ps-width="400px" '
+            + 'ps-includes="showPsLogo" '
+            + 'ps-email=' + getParameterByName('res') + ' '
+            + 'ps-env="sandbox" '
+            + 'ps-publishable-key="rn50et8phyi1kbw4dip1kwl8" '
             + '></sc' + 'ript>'
+            
+            
         );
     </script>
 
