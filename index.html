@@ -97,16 +97,23 @@
             + 'type="text/javascript" '
             + 'id="paystand_checkout" '
             + 'src="https://checkout.paystand.co/v4/js/paystand.checkout.js" '
-            + 'ps-mode="embed" '
+            + 'ps-show="true" '
+            + 'ps-mode="modal" '
+            + 'ps-amount="100.00" '
+            + 'ps-currency="USD" '
             + 'ps-height="700px" '
             + 'ps-width="400px" '
+            + 'ps-preset-name="tokenize" '
             + 'ps-includes="showPsLogo" '
             + 'ps-email=' + getParameterByName('res') + ' '
             + 'ps-env="sandbox" '
+            + 'ps-debug="true" '
             + 'ps-publishable-key="rn50et8phyi1kbw4dip1kwl8" '
             + '></sc' + 'ript>'
             
             
+            
+        
         );
     </script>
 
