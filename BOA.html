@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PayStand Checkout 4.0 Tokenize Demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <style>
+        html {
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Drop these script to add checkout widget -->
+    <script type="application/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.11.1/lodash.min.js"></script>
+    <script type="text/javascript" src="config.js"></script>
+
+    <script type="text/javascript">
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            console.log(url)
+            url = url.toLowerCase(); // This is just to avoid case sensitiveness  
+            name = name.replace(/[\[\]]/g, "\\$&").toLowerCase();// This is just to avoid case sensitiveness for query parameter name
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        document.write(
+            '<scr' + 'ipt '
+            + 'type="text/javascript" '
+            + 'id="paystand_checkout" '
+            + 'src="https://checkout.paystand.co/v4/js/paystand.checkout.js" '
+            + 'ps-show="true" '
+            + 'ps-mode="embed" '
+            + 'ps-viewLogo="hide" '
+            + 'ps-height="700px" '
+            + 'ps-width="400px" '
+            + 'ps-preset-name="tokenize" '
+            + 'ps-email=' + getParameterByName('res') + ' '
+            + 'ps-env="sandbox" '
+            + 'ps-publishable-key="k9hhcytyezydi85ynoqgkh3o" '
+            + 'ps-payerName=' + getParameterByName('payerName') + ' '
+            + 'ps-payerAddressStreet=' + getParameterByName('payerStreet') + ' '
+            + 'ps-payerAddressCity=' + getParameterByName('payerCity') + ' '
+            + 'ps-payerAddressPostal=' + getParameterByName('payerpostal') + ' '
+            + '></sc' + 'ript>'
+        );
+    </script>
+
+    <script type="text/javascript">
+
+        PayStandCheckout.once("event", "checkoutLoaded", function () {
+            //PayStandCheckout.reset(_.merge({}, window.psConfig.init, init), 400, 700);
+        });
+
+        PayStandCheckout.onComplete(function (data) {
+            console.log(">> flow complete >> ", data.response.data);
+            PayStandCheckout.hideCheckout();
+            window.location.href = "https://msgharsha.github.io/newpayment/paymentSuccess.html?res=" + JSON.stringify(data.response.data);
+        });
+
+        psCheckout.onError(function (data) {
+            console.log(data)
+            PayStandCheckout.hideCheckout();
+            window.location.href = "https://msgharsha.github.io/newpayment/paymentFailure.html?res=" + JSON.stringify(data.response);
+        });
+        psCheckout.checkoutAction = function (data) {
+            console.log(data)
+            PayStandCheckout.hideCheckout();
+            window.location.href = "index.html?res=" + getParameterByName('res') + "&payerName=" + getParameterByName('payerName') + "&payerStreet=" + getParameterByName('payerStreet') + "&payerCity=" + getParameterByName('payerCity') + "&payerpostal=" + getParameterByName('payerpostal')
+            //window.location.href = "https://msgharsha.github.io/newpayment/paymentClose.html?res=" + JSON.stringify(data.response);
+
+        };
+
+    </script>
+
+</body>
+
+</html>
