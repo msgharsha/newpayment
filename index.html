@@ -52,36 +52,63 @@
 <body>
     <div class="container-fluid bg-image px-5" style="height: 100vh;">
         <div class="d-flex h-100 position-relative">
-            <div class="position-absolute mid-center">
+            <div class="position-absolute mid-center" id="initialDiv">
                 <div class="mb-3 ml-2">
                     <span style="font-size: 18px;color: #fff;">You will now be redirected to your bank's online banking
                         portal to confirm your bank details.</span>
                 </div>
                 <div class="text-white mb-3 pl-2">
-                    <div class="form-check form-check-inline mr-3">
-                        <input class="form-check-input" type="radio" name="bankDetails" id="BOA" onclick="bankChange()"
-                            checked="checked" value="BOA">
-                        <label class="form-check-label" for="BOA">Bank of America/Wells Fargo</label>
-                    </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="bankDetails" id="Remaining"
                             onclick="bankChange()" value="Remaining">
-                        <label class="form-check-label" for="Remaining">Remaining all banks</label>
+                        <label class="form-check-label" for="Remaining">All other Banks</label>
                     </div>
+                    <div class="form-check form-check-inline mr-3">
+                        <input class="form-check-input" type="radio" name="bankDetails" id="BOA" onclick="bankChange()"
+                            value="BOA">
+                        <label class="form-check-label" for="BOA">Bank of America or Wells Fargo</label>
+                    </div>
+                    
                 </div>
 
                 <a href="#myContent" class="ps-button btn btn-primary loginbtn w-100 " style="display: none;"
                     id="remainingBankButton" ps-checkoutType="checkout_token" ps-fixedAmount="false"
                     ps-paymentCurrency="USD">Confirm Bank
-                    Details !</a>
-                <a style="color: #e8e8e8;" class=" btn btn-primary loginbtn w-100 " id="BOABankButton"
+                    Details</a>
+                <a style="color: #e8e8e8;" class=" btn btn-primary loginbtn w-100 BOABankButton" 
                     ps-checkoutType="checkout_token" ps-fixedAmount="false" ps-paymentCurrency="USD">Confirm Bank
-                    Details !</a>
+                    Details</a>
+            </div>
+            <div class="position-absolute mid-center" id="paymentFailDiv">
+                <div class="mb-3 ml-2">
+                    <span style="font-size: 18px;color: #fff;">You will now be redirected to your bank's online banking
+                        portal to confirm your bank details.</span>
+                </div>
+                <div class="text-white mb-3 pl-2">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="bankDetails" id="paymentFail"  value="BOA">
+                        <label class="form-check-label" for="paymentFail">All other Bannks</label>
+                    </div>
+                </div>
+
+                <a style="color: #e8e8e8;" class=" btn btn-primary loginbtn w-100 BOABankButton"
+                    ps-checkoutType="checkout_token" ps-fixedAmount="false" ps-paymentCurrency="USD">Confirm Bank
+                    Details</a>
             </div>
         </div>
     </div>
     <!-- Drop these script to add checkout widget -->
     <script type="text/javascript">
+            var paymentFailure = getParameterByName('paymentFail')
+            //alert(paymentFailure);
+            if (paymentFailure) {
+                $('#initialDiv').hide()
+                $('#paymentFailDiv').show()
+            } else {
+                $('#initialDiv').show()
+                $('#paymentFailDiv').hide()
+
+            }
 
         function getParameterByName(name, url) {
             if (!url) url = window.location.href;
@@ -100,16 +127,20 @@
             console.log(value);
             if (value == 'BOA') {
                 $('#remainingBankButton').hide()
-                $('#BOABankButton').show()
+                $('.BOABankButton').show()
             } else {
                 $("#remainingBankButton").css({ 'display': 'block' });
-                $('#BOABankButton').hide()
+                $('.BOABankButton').hide()
 
             }
         }
-        $('#BOABankButton').click(function () {
-            //window.location.href = "https://msgharsha.github.io/newpayment/BOA.html?res=sriharsha@gmail.com"
-            window.location.href = "https://msgharsha.github.io/newpayment/BOA.html?res=" + getParameterByName('res') + "&payerName=" + getParameterByName('payerName') + "&payerStreet=" + getParameterByName('payerStreet') + "&payerCity=" + getParameterByName('payerCity') + "&payerpostal=" + getParameterByName('payerpostal')
+        $('.BOABankButton').click(function () {
+            var value = $("input[type='radio']:checked").val();
+            console.log(value);
+            if (value == 'BOA') {
+                //window.location.href = "https://msgharsha.github.io/newpayment/BOA.html?res=sriharsha@gmail.com"
+                window.location.href = "https://msgharsha.github.io/newpayment/BOA.html?res=" + getParameterByName('res') + "&payerName=" + getParameterByName('payerName') + "&payerStreet=" + getParameterByName('payerStreet') + "&payerCity=" + getParameterByName('payerCity') + "&payerpostal=" + getParameterByName('payerpostal')
+            }
         })
 
         document.write(
