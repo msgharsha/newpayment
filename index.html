@@ -5,7 +5,7 @@
     <title>pCube Payment</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js">
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
     </script>
@@ -29,7 +29,7 @@
             text-transform: uppercase;
             color: #e8e8e8;
             border-radius: 64px;
-            padding: 8px 0; 
+            padding: 8px 0;
             font-family: 'Open Sans', sans-serif !important;
             font-weight: 300 !important;
             font-size: 14px;
@@ -46,7 +46,6 @@
             background-size: cover;
             background-repeat: no-repeat;
         }
-        
     </style>
 </head>
 
@@ -55,9 +54,27 @@
         <div class="d-flex h-100 position-relative">
             <div class="position-absolute mid-center">
                 <div class="mb-3 ml-2">
-                    <span style="font-size: 18px;color: #fff;">You will now be redirected to your bank's online banking portal to confirm your bank details.</span>
+                    <span style="font-size: 18px;color: #fff;">You will now be redirected to your bank's online banking
+                        portal to confirm your bank details.</span>
                 </div>
-                <a href="#myContent" class="ps-button btn btn-primary loginbtn w-100 " 
+                <div class="text-white mb-3 pl-2">
+                    <div class="form-check form-check-inline mr-3">
+                        <input class="form-check-input" type="radio" name="bankDetails" id="BOA" onclick="bankChange()"
+                            checked="checked" value="BOA">
+                        <label class="form-check-label" for="BOA">Bank of America/Wells Fargo</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="bankDetails" id="Remaining"
+                            onclick="bankChange()" value="Remaining">
+                        <label class="form-check-label" for="Remaining">Remaining all banks</label>
+                    </div>
+                </div>
+
+                <a href="#myContent" class="ps-button btn btn-primary loginbtn w-100 " style="display: none;"
+                    id="remainingBankButton" ps-checkoutType="checkout_token" ps-fixedAmount="false"
+                    ps-paymentCurrency="USD">Confirm Bank
+                    Details !</a>
+                <a style="color: #e8e8e8;" class=" btn btn-primary loginbtn w-100 " id="BOABankButton"
                     ps-checkoutType="checkout_token" ps-fixedAmount="false" ps-paymentCurrency="USD">Confirm Bank
                     Details !</a>
             </div>
@@ -78,43 +95,41 @@
             return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
 
+        function bankChange() {
+            var value = $("input[type='radio']:checked").val();
+            console.log(value);
+            if (value == 'BOA') {
+                $('#remainingBankButton').hide()
+                $('#BOABankButton').show()
+            } else {
+                $("#remainingBankButton").css({ 'display': 'block' });
+                $('#BOABankButton').hide()
+
+            }
+        }
+        $('#BOABankButton').click(function () {
+            //window.location.href = "https://msgharsha.github.io/newpayment/BOA.html?res=sriharsha@gmail.com"
+            window.location.href = "BOA.html?res=" + getParameterByName('res') + "&payerName=" + getParameterByName('payerName') + "&payerStreet=" + getParameterByName('payerStreet') + "&payerCity=" + getParameterByName('payerCity') + "&payerpostal=" + getParameterByName('payerpostal')
+        })
+
         document.write(
-//             '<scr' + 'ipt '
-//             + 'type="text/javascript" '
-//             + 'id="ps_checkout" '
-//             + 'src="https://checkout.paystand.co/v4/js/paystand.checkout.js" '
-//             + 'ps-mode="embed" '
-//             + 'ps-viewFunds ="bank" '
-//             + 'ps-payerEmail=' + getParameterByName('res') + ' '
-//             + 'ps-viewLogo="hide" '
-//             + 'ps-paymentMeta=' + getParameterByName('res') + ' '
-//             + 'ps-publishableKey="rn50et8phyi1kbw4dip1kwl8" '
-//             + 'ps-externalCss = "https://pcubeinternational.com/mobile/style.css" '
-//             + '></sc' + 'ript>'
-            
-            
             '<scr' + 'ipt '
             + 'type="text/javascript" '
-            + 'id="paystand_checkout" '
+            + 'id="ps_checkout" '
             + 'src="https://checkout.paystand.co/v4/js/paystand.checkout.js" '
             + 'ps-mode="embed" '
-            + 'ps-height="700px" '
-            + 'ps-width="400px" '
-            + 'ps-preset-name="tokenize" '
-            + 'ps-email=' + getParameterByName('res') + ' '
-            + 'ps-env="sandbox" '
-            + 'ps-publishable-key="k9hhcytyezydi85ynoqgkh3o" '
+            + 'ps-viewFunds ="bank" '
+            + 'ps-payerEmail=' + getParameterByName('res') + ' '
+            + 'ps-viewLogo="hide" '
+            + 'ps-paymentMeta=' + getParameterByName('res') + ' '
+            + 'ps-publishableKey="rn50et8phyi1kbw4dip1kwl8" '
             + 'ps-externalCss = "https://pcubeinternational.com/mobile/style.css" '
             + '></sc' + 'ript>'
-            
-            
-            
-        
         );
     </script>
 
     <script type="text/javascript">
-       
+
 
         PayStandCheckout.once("event", "checkoutLoaded", function () {
             //PayStandCheckout.reset(_.merge({}, window.psConfig.init, init), 400, 700);
@@ -138,9 +153,9 @@
 
         };
     </script>
-<div id="myContent">
+    <div id="myContent">
 
-</div>
+    </div>
 </body>
 
 </html>
