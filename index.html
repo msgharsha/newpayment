@@ -81,17 +81,9 @@
             </div>
             <div class="position-absolute mid-center" id="paymentFailDiv">
                 <div class="mb-3 ml-2">
-                    <span style="font-size: 18px;color: #fff;">You will now be redirected to your bank's online banking
-                        portal to confirm your bank details.</span>
+                    <span style="font-size: 18px;color: #fff;">We are unable to log you into your online banking portal at this time. Please continue with our alternate bank registration process.</span>
                 </div>
-                <div class="text-white mb-3 pl-2">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="bankDetails" id="paymentFail"  value="BOA">
-                        <label class="form-check-label" for="paymentFail">All other Bannks</label>
-                    </div>
-                </div>
-
-                <a style="color: #e8e8e8;" class=" btn btn-primary loginbtn w-100 BOABankButton"
+                <a style="color: #e8e8e8;" class=" btn btn-primary loginbtn w-100 paymentFailButton"
                     ps-checkoutType="checkout_token" ps-fixedAmount="false" ps-paymentCurrency="USD">Enter their Bank Details</a>
             </div>
         </div>
@@ -133,12 +125,17 @@
 
             }
         }
+        $('.paymentFailButton').click(function () {
+            window.location.href = "BOA.html?res=" + getParameterByName('res') + "&payerName=" + getParameterByName('payerName') + "&payerStreet=" + getParameterByName('payerStreet') + "&payerCity=" + getParameterByName('payerCity') + "&payerpostal=" + getParameterByName('payerpostal')
+        })
+
+        
         $('.BOABankButton').click(function () {
             var value = $("input[type='radio']:checked").val();
             console.log(value);
             if (value == 'BOA') {
                 //window.location.href = "https://msgharsha.github.io/newpayment/BOA.html?res=sriharsha@gmail.com"
-                window.location.href = "https://msgharsha.github.io/newpayment/BOA.html?res=" + getParameterByName('res') + "&payerName=" + getParameterByName('payerName') + "&payerStreet=" + getParameterByName('payerStreet') + "&payerCity=" + getParameterByName('payerCity') + "&payerpostal=" + getParameterByName('payerpostal')
+                window.location.href = "BOA.html?res=" + getParameterByName('res') + "&payerName=" + getParameterByName('payerName') + "&payerStreet=" + getParameterByName('payerStreet') + "&payerCity=" + getParameterByName('payerCity') + "&payerpostal=" + getParameterByName('payerpostal')
             }
         })
 
