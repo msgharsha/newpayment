@@ -170,10 +170,10 @@
 
         psCheckout.onError(function (data) {
             console.log(data)
+            PayStandCheckout.hideCheckout();
             if(count == 0){
                 alert(data.response.event.data);
             } else {
-                PayStandCheckout.hideCheckout();
                 window.location.href = "https://msgharsha.github.io/newpayment/paymentFailure.html?res=" + JSON.stringify(data.response);
             }
             count++;
