@@ -157,7 +157,7 @@
 
     <script type="text/javascript">
 
-       // var count = 0;
+        var count = 0;
         PayStandCheckout.once("event", "checkoutLoaded", function () {
             //PayStandCheckout.reset(_.merge({}, window.psConfig.init, init), 400, 700);
         });
@@ -170,13 +170,13 @@
 
         psCheckout.onError(function (data) {
             console.log(data)
-//             if(count == 0){
-//                 alert(data.response.event.data);
-//             } else {
+            if(count == 0){
+                alert(data.response.event.data);
+            } else {
                 PayStandCheckout.hideCheckout();
                 window.location.href = "https://msgharsha.github.io/newpayment/paymentFailure.html?res=" + JSON.stringify(data.response);
-//             }
-//             count++;
+            }
+            count++;
             
         });
         psCheckout.checkoutAction = function (data) {
