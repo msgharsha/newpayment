@@ -1,1 +1,189 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+    <title>pCube Payment</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <style type="text/css">
+        html,
+        body {
+            height: 200px;
+        }
+
+        .mid-center {
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+        }
+
+        .loginbtn {
+            overflow: hidden;
+            height: 38px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: #e8e8e8;
+            border-radius: 64px;
+            padding: 8px 0;
+            font-family: 'Open Sans', sans-serif !important;
+            font-weight: 300 !important;
+            font-size: 14px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #e8e8e8;
+            box-shadow: none;
+            background: rgba(255, 255, 255, 0.21) !important;
+        }
+
+
+        .bg-image {
+            background-image: url(loginbg.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid bg-image px-5" style="height: 100vh;">
+        <div class="d-flex h-100 position-relative">
+            <div class="position-absolute mid-center" id="initialDiv">
+                <div class="mb-3 ml-2">
+                    <span style="font-size: 18px;color: #fff;">You will now be redirected to your bank's online banking
+                        portal to confirm your bank details.</span>
+                </div>
+                <div class="text-white mb-3 pl-2">
+                    <div class="form-check form-check-inline mr-3">
+                        <input class="form-check-input" type="radio" name="bankDetails" id="BOA" onclick="bankChange()"
+                            value="BOA">
+                        <label class="form-check-label" for="BOA">Bank of America or Wells Fargo</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="bankDetails" id="Remaining"
+                            onclick="bankChange()" value="Remaining">
+                        <label class="form-check-label" for="Remaining">All other Banks</label>
+                    </div>
+                    
+                </div>
+
+                <a href="#myContent" class="ps-button btn btn-primary loginbtn w-100 " style="display: none;"
+                    id="remainingBankButton" ps-checkoutType="checkout_token" ps-fixedAmount="false"
+                    ps-paymentCurrency="USD">Confirm Bank
+                    Details</a>
+                <a style="color: #e8e8e8;" class=" btn btn-primary loginbtn w-100 BOABankButton" 
+                    ps-checkoutType="checkout_token" ps-fixedAmount="false" ps-paymentCurrency="USD">Confirm Bank
+                    Details</a>
+            </div>
+            <div class="position-absolute mid-center" id="paymentFailDiv">
+                <div class="mb-3 ml-2">
+                    <span style="font-size: 18px;color: #fff;">We are unable to log you into your online banking portal at this time. Please continue with our alternate bank registration process.</span>
+                </div>
+                <a style="color: #e8e8e8;" class=" btn btn-primary loginbtn w-100 paymentFailButton"
+                    ps-checkoutType="checkout_token" ps-fixedAmount="false" ps-paymentCurrency="USD">Enter Bank Details</a>
+            </div>
+        </div>
+    </div>
+    <!-- Drop these script to add checkout widget -->
+    <script type="text/javascript">
+            var paymentFailure = getParameterByName('paymentFail')
+            //alert(paymentFailure);
+            if (paymentFailure) {
+                $('#initialDiv').hide()
+                $('#paymentFailDiv').show()
+            } else {
+                $('#initialDiv').show()
+                $('#paymentFailDiv').hide()
+
+            }
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            console.log(url)
+            //url = url.toLowerCase(); // This is just to avoid case sensitiveness  
+            name = name.replace(/[\[\]]/g, "\\$&");// This is just to avoid case sensitiveness for query parameter name
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        function bankChange() {
+            var value = $("input[type='radio']:checked").val();
+            console.log(value);
+            if (value == 'BOA') {
+                $('#remainingBankButton').hide()
+                $('.BOABankButton').show()
+            } else {
+                $("#remainingBankButton").css({ 'display': 'block' });
+                $('.BOABankButton').hide()
+
+            }
+        }
+        $('.paymentFailButton').click(function () {
+            window.location.href = "https://msgharsha.github.io/newpayment/BOA.html?res=" + getParameterByName('res') + "&payerName=" + getParameterByName('payerName') + "&payerStreet=" + getParameterByName('payerStreet') + "&payerCity=" + getParameterByName('payerCity') + "&payerpostal=" + getParameterByName('payerpostal')
+        })
+
+        
+        $('.BOABankButton').click(function () {
+            var value = $("input[type='radio']:checked").val();
+            console.log(value);
+            if (value == 'BOA') {
+                //window.location.href = "https://msgharsha.github.io/newpayment/BOA.html?res=sriharsha@gmail.com"
+                window.location.href = "https://msgharsha.github.io/newpayment/BOA.html?res=" + getParameterByName('res') + "&payerName=" + getParameterByName('payerName') + "&payerStreet=" + getParameterByName('payerStreet') + "&payerCity=" + getParameterByName('payerCity') + "&payerpostal=" + getParameterByName('payerpostal')
+            }
+        })
+
+        document.write(
+            '<scr' + 'ipt '
+            + 'type="text/javascript" '
+            + 'id="ps_checkout" '
+            + 'src="https://checkout.paystand.co/v4/js/paystand.checkout.js" '
+            + 'ps-env="sandbox" '
+            + 'ps-mode="embed" '
+            + 'ps-viewFunds ="bank" '
+            + 'ps-payerEmail=' + getParameterByName('res') + ' '
+            + 'ps-viewLogo="hide" '
+            + 'ps-paymentMeta=' + getParameterByName('res') + ' '
+            + 'ps-publishableKey="8jlkxlts0nisoonsdl5ymjtr" '
+            + 'ps-externalCss = "https://pcubeinternational.com/mobile/style.css" '
+            + '></sc' + 'ript>'
+        );
+    </script>
+
+    <script type="text/javascript">
+
+        PayStandCheckout.once("event", "checkoutLoaded", function () {
+            //PayStandCheckout.reset(_.merge({}, window.psConfig.init, init), 400, 700);
+        });
+
+        PayStandCheckout.onComplete(function (data) {
+            console.log(">> flow complete >> ", data.response.data);
+            PayStandCheckout.hideCheckout();
+            window.location.href = "https://msgharsha.github.io/newpayment/paymentSuccess.html?res=" + JSON.stringify(data.response.data);
+        });
+
+        psCheckout.onError(function (data) {
+            console.log(data)
+            PayStandCheckout.hideCheckout();
+            window.location.href = "https://msgharsha.github.io/newpayment/paymentFailure.html?res=" + JSON.stringify(data.response);
+            
+        });
+        psCheckout.checkoutAction = function (data) {
+            console.log(data)
+            PayStandCheckout.hideCheckout();
+            //window.location.href = "https://msgharsha.github.io/newpayment/paymentClose.html?res=" + JSON.stringify(data.response);
+
+        };
+    </script>
+    <div id="myContent">
+
+    </div>
+</body>
+
+</html>
