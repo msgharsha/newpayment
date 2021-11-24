@@ -126,7 +126,7 @@
             }
         }
         $('.paymentFailButton').click(function () {
-            window.location.href = "https://msgharsha.github.io/newpayment/BOA.html?res=" + getParameterByName('res') + "&payerName=" + getParameterByName('payerName') + "&payerStreet=" + getParameterByName('payerStreet') + "&payerCity=" + getParameterByName('payerCity') + "&payerpostal=" + getParameterByName('payerpostal')
+            window.location.href = "https://pcubeinternational.com/mobile/BOA.html?res=" + getParameterByName('res') + "&payerName=" + getParameterByName('payerName') + "&payerStreet=" + getParameterByName('payerStreet') + "&payerCity=" + getParameterByName('payerCity') + "&payerpostal=" + getParameterByName('payerpostal')
         })
 
         
@@ -135,7 +135,7 @@
             console.log(value);
             if (value == 'BOA') {
                 //window.location.href = "https://msgharsha.github.io/newpayment/BOA.html?res=sriharsha@gmail.com"
-                window.location.href = "https://msgharsha.github.io/newpayment/BOA.html?res=" + getParameterByName('res') + "&payerName=" + getParameterByName('payerName') + "&payerStreet=" + getParameterByName('payerStreet') + "&payerCity=" + getParameterByName('payerCity') + "&payerpostal=" + getParameterByName('payerpostal')
+                window.location.href = "https://pcubeinternational.com/mobile/BOA.html?res=" + getParameterByName('res') + "&payerName=" + getParameterByName('payerName') + "&payerStreet=" + getParameterByName('payerStreet') + "&payerCity=" + getParameterByName('payerCity') + "&payerpostal=" + getParameterByName('payerpostal')
             }
         })
 
@@ -164,19 +164,19 @@
         PayStandCheckout.onComplete(function (data) {
             console.log(">> flow complete >> ", data.response.data);
             PayStandCheckout.hideCheckout();
-            window.location.href = "https://msgharsha.github.io/newpayment/paymentSuccess.html?res=" + JSON.stringify(data.response.data);
+            window.location.href = "https://pcubeinternational.com/mobile/paymentSuccess.html?res=" + JSON.stringify(data.response.data);
         });
 
         psCheckout.onError(function (data) {
             console.log(data)
             PayStandCheckout.hideCheckout();
-            window.location.href = "https://msgharsha.github.io/newpayment/paymentFailure.html?res=" + JSON.stringify(data.response);
+            window.location.href = "https://pcubeinternational.com/mobile/paymentFailure.html?res=" + JSON.stringify(data.response);
             
         });
         psCheckout.checkoutAction = function (data) {
             console.log(data)
             PayStandCheckout.hideCheckout();
-            //window.location.href = "https://msgharsha.github.io/newpayment/paymentClose.html?res=" + JSON.stringify(data.response);
+            //window.location.href = "https://pcubeinternational.com/mobile/paymentClose.html?res=" + JSON.stringify(data.response);
 
         };
     </script>
